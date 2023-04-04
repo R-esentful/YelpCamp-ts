@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import landing from "../assets/landing-hero.png";
 import tent from "../assets/animat-tent-color.gif";
 import ui from "../assets/animat-day-night-color.gif";
 import search from "../assets/animat-flashlight-color.gif";
@@ -12,114 +11,75 @@ import { ReactComponent as Map } from "../assets/features-map.svg";
 function Landing() {
   return (
     <>
-      <div className="container landing">
-        <header>
-          <section className="landing-logo">
-            <img src={logo} alt="YelpCamp Logo" />
-            <h1>YelpCamp</h1>
-          </section>
-
-          <section className="landing-options">
-            <a href="#asda">Home</a>
-            <a href="#asda">About</a>
-            <a href="#asdasd">Contact</a>
-          </section>
-
-          <section className="landing-buttons">
-            <Link to="/register" className="btn btn-primary mr-1">
-              Login
-            </Link>
-            <Link to="/register" className="btn btn-smoke">
-              Register
-            </Link>
-          </section>
-        </header>
-
-        <section className="landing-grid-container">
-          <div className="landing-grid">
-            <div className="hero hero-p">
-              <p>Discover the natural wonders of the Philippines with YelpCamp.</p>
-              <p>Your ultimate guide to camping, hiking, and outdoor fun.</p>
-
-              <Link to="/campgrounds" className="btn btn-primary">
-                View Campgrounds
-              </Link>
+      <main className="main-landing">
+        <section className="bg-[#ea5422] grid grid-cols-3 gap-[1rem] h-[130px] p-[20px]">
+          <div className="text-[#fff] flex justify-center content-center">
+            <figure className="flex mr-4">
+              <Camp width={80} height={80} className="m-auto" />
+            </figure>
+            <div className="flex flex-col p-4">
+              <h2 className="text-2xl font-[900]">Camping Destination</h2>
+              <p className="text-[16px]">6969</p>
             </div>
+          </div>
 
-            <div className="hero hero-img">
-              <img src={landing} alt="" />
+          <div className="text-[#fff] flex justify-center content-center">
+            <figure className="flex mr-4">
+              <Review width={80} height={80} className="m-auto" />
+            </figure>
+            <div className="flex flex-col p-4">
+              <h2 className="text-2xl font-[900]">Positive Reviews</h2>
+              <p className="text-[16px]">6969</p>
+            </div>
+          </div>
+
+          <div className="text-[#fff] flex justify-center content-center">
+            <figure className="flex mr-4">
+              <User width={80} height={80} className="m-auto" />
+            </figure>
+            <div className="flex flex-col p-4">
+              <h2 className="text-2xl font-[900]">Active User</h2>
+              <p className="text-[16px]">6969</p>
             </div>
           </div>
         </section>
-      </div>
-
-      <main>
-        <section className="stats-grid">
-          <div className="stats-item">
-            <figure>
-              <Camp width={80} height={80} />
-            </figure>
-            <div>
-              <h2>Camping Destination</h2>
-              <p>6969</p>
-            </div>
-          </div>
-
-          <div className="stats-item">
-            <figure>
-              <Review width={80} height={80} />
-            </figure>
-            <div>
-              <h2>Positive Reviews</h2>
-              <p>6969</p>
-            </div>
-          </div>
-
-          <div className="stats-item">
-            <figure>
-              <User width={80} height={80} />
-            </figure>
-            <div>
-              <h2>Active User</h2>
-              <p>6969</p>
-            </div>
-          </div>
-        </section>
-        <section className="features">
-          <div className="features-container">
-            <h2>WHY CHOOSE US?</h2>
+        <section className="mt-[2rem] grid p-[20px] grid-cols-3">
+          <div className="flex flex-col justify-center content-center">
+            <h2 className="text-center text-2xl font-[900]">WHY CHOOSE US?</h2>
             <Feature width={400} height={400} />
           </div>
-          <div className="features-container">
-            <div className="features-container-item">
-              <section>
-                <figure>
-                  <img src={tent} alt="" />
+          <div className="flex flex-col justify-center content-center col-span-2">
+            <div className="grid gap-[1rem] grid-cols-3">
+              <section className="p-[10px]">
+                <figure className="flex">
+                  <img src={tent} alt="" className="m-auto w-[80px] h-[80px]" />
                 </figure>
-                <h2>Comprehensive listings</h2>
-                <p>
+                <h2 className="text-center mb-[5px] text-2xl font-[900]">Comprehensive listings</h2>
+                <p className="text-justify leading-[1.5] text-[grey]">
                   Detailed information on hundreds of campgrounds across the Philippines, making it
                   easy for you to find the perfect spot for your next adventure.
                 </p>
               </section>
 
-              <section>
-                <figure>
-                  <img src={ui} alt="" />
+              <section className="p-[10px]">
+                <figure className="flex">
+                  <img src={ui} alt="" className="m-auto w-[80px] h-[80px]" />
                 </figure>
-                <h2>User-friendly interface</h2>
-                <p>
+                <h2 className="text-center mb-[5px] text-2xl font-[900]">
+                  User-friendly interface
+                </h2>
+                <p className="text-justify leading-[1.5] text-[grey]">
                   Designed to be intuitive and easy to use, so you can spend less time navigating
                   and more time planning your trip.
                 </p>
               </section>
 
-              <section>
-                <figure>
-                  <img src={search} alt="" />
+              <section className="p-[10px]">
+                <figure className="flex">
+                  <img src={search} alt="" className="m-auto w-[80px] h-[80px]" />
                 </figure>
-                <h2>Customized search</h2>
-                <p>
+                <h2 className="text-center mb-[5px] text-2xl font-[900]">Customized search</h2>
+                <p className="text-justify leading-[1.5] text-[grey]">
                   Narrow down your options by location, amenities, and more, so you can quickly find
                   the campgrounds that meet your specific needs.
                 </p>
@@ -127,69 +87,28 @@ function Landing() {
             </div>
           </div>
         </section>
-        <section className="features-map">
-          <div className="features-map-container">
-            <h1>
+        <section className="grid p-[20px] grid-cols-4 gap-[1rem]">
+          <div className="flex flex-col justify-center content-center col-span-2">
+            <h1 className="text-[28px] text-center mb-[1rem] font-[900]">
               YelpCamp connects passionate Filipino campers to unforgettable outdoor adventures
               across the Philippines.
             </h1>
 
-            <p>
+            <p className="mb-[1rem] text-[grey]">
               Join our community of passionate campers and unlock the full potential of your outdoor
               adventure.
             </p>
-            <Link to="/register" className="btn btn-primary">
-              Join Community
-            </Link>
+            <div className="flex justify-center">
+              <Link to="/register" className="btn btn-primary rounded-full">
+                Join Community
+              </Link>
+            </div>
           </div>
-          <div className="features-map-container">
+          <div className="flex flex-col justify-center content-center col-span-2">
             <Map width={700} height={400} />
           </div>
         </section>
       </main>
-
-      <footer className="landing-footer">
-        <section>
-          <section className="landing-logo">
-            <img src={logo} alt="YelpCamp Logo" />
-            <h1>YelpCamp</h1>
-          </section>
-          <p>Discover the Great Outdoors with YelpCamp!</p>
-        </section>
-
-        <section>
-          <h3>Company</h3>
-          <ul>
-            <li>Features</li>
-            <li>News</li>
-            <li>FAQ</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Resources</h3>
-          <ul>
-            <li>Events</li>
-            <li>Promos</li>
-            <li>Demo</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Support</h3>
-          <ul>
-            <li>Account</li>
-            <li>Support Center</li>
-            <li>Feedback</li>
-            <li>Contact Us</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Social Media</h3>
-          <p>Yelpcamp@support.ts</p>
-        </section>
-      </footer>
     </>
   );
 }
