@@ -1,13 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: #fff;
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+.mr-2 {
+  margin-right: 20px;
+}
+.mr-3 {
+  margin-right: 30px;
+}
+.mr-4 {
+  margin-right: 40px;
+}
+
+.ml--1 {
+  margin-left: 10px;
+}
+.ml--2 {
+  margin-left: 20px;
+}
+.ml--3 {
+  margin-left: 30px;
+}
+.ml--4 {
+  margin-left: 40px;
+}
+
+.container {
+  padding: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn-primary {
+  background-color: #EA5422;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: #632626;
+  color: white;
+}
+.btn-smoke {
+  background-color: #F5F5F5;
+  color: black;
+}
+
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.landing header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.landing-logo {
+  display: flex;
+}
+.landing-logo h1 {
+  font-size: 20px;
+  padding: 10px 0px;
+}
+.landing-logo img {
+  width: 50px;
+  height: 50px;
+}
+.landing-options {
+  padding: 10px 0;
+}
+.landing-options > * {
+  margin: 0 10px;
+}
+.landing-buttons {
+  display: flex;
+  align-items: center;
+}
+.landing-grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.landing-grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding: 20px;
+}
+.hero-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.hero-p p:first-child {
+  font-size: 45px;
+  font-weight: 900;
+}
+.hero-p p:nth-child(2) {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  color: grey;
+}
+.hero-p .btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.hero-p .btn-primary {
+  background-color: #EA5422;
+  color: #fff;
+}
+.hero-p .btn-secondary {
+  background-color: #632626;
+  color: white;
+}
+.hero-p .btn-smoke {
+  background-color: #F5F5F5;
+  color: black;
+}
+.hero-img {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-grid {
+  background-color: #EA5422;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  height: 150px;
+  padding: 20px;
+}
+.stats-item {
+  color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stats-item p {
+  font-size: 16px;
+}
+
+.features {
+  padding: 20px;
+}
+.features img {
+  width: 300px;
+  height: 300px;
 }
