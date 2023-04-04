@@ -6,7 +6,9 @@
   "scripts": {
     "tsc-watch": "tsc -w",
     "backend": "nodemon backend/dist/server.js",
-    "dev": " concurrently \"npm run tsc-watch\" \"npm run backend\""
+    "sass": "npm run sass --prefix frontend",
+    "frontend": "npm start --prefix frontend",
+    "dev": " concurrently \"npm run tsc-watch\" \"npm run backend\" \"npm run frontend\" \"npm run sass\""
   },
   "author": "",
   "license": "ISC",
