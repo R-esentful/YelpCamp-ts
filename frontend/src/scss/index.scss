@@ -130,6 +130,27 @@ li {
     display: flex;
     flex-direction: column;
   }
+
+  &-footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 2rem;
+    // background: linear-gradient(90deg, rgba(255, 253, 253, 1) 0%, rgba(254, 115, 69, 1) 100%);
+
+    ul {
+      padding: 0;
+    }
+    li {
+      padding: 5px 0;
+    }
+
+    & section:first-child {
+      p {
+        padding: 0 10px;
+        text-align: start;
+      }
+    }
+  }
 }
 
 .hero {
@@ -139,7 +160,7 @@ li {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
 
     & p:first-child {
       font-size: 45px;
@@ -163,13 +184,19 @@ li {
   }
 }
 
+main {
+  background: rgba(245, 245, 245, 0.9);
+  // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
 .stats {
   &-grid {
     background-color: variables.$primary;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    height: 150px;
+    height: 160px;
     padding: 20px;
   }
   &-item {
@@ -185,9 +212,79 @@ li {
 }
 
 .features {
+  margin-top: 2rem;
+  display: grid;
   padding: 20px;
-  img {
-    width: 300px;
-    height: 300px;
+  grid-template-columns: repeat(3, 1fr);
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &-item {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+
+      section {
+        padding: 10px;
+
+        figure {
+          display: flex;
+
+          img {
+            margin: auto;
+            width: 80px;
+            height: 80px;
+          }
+        }
+
+        h2 {
+          text-align: center;
+          margin-bottom: 5px;
+        }
+
+        p {
+          text-align: justify;
+          line-height: 1.5;
+          color: grey;
+        }
+      }
+    }
+  }
+  & div:nth-child(2) {
+    display: grid;
+    grid-column: 2 / span 2;
+  }
+
+  &-map {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      h1 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 1rem;
+      }
+
+      & .btn {
+        @include mixins.button-styles(15px 25px, 30px, 16px);
+      }
+    }
+
+    & div:first-child {
+      grid-column: 1 / span 2;
+    }
   }
 }
