@@ -1,8 +1,55 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { Formik, Form, Field, FormikHelpers } from "formik";
+import { FcGoogle } from "react-icons/fc";
+import { ClipLoader } from "react-spinners";
+import { useState } from "react";
+
+// Schema
+import { registerSchema } from "../schema/registerSchema";
+
+// Components
+import FormControlInput from "../components/FormControlInput";
+import Input from "../components/CustomInput";
+
+// Variables
+import { user_api } from "../utils/variables";
+interface DataInterface {
+  name: string;
+  password: string;
+  confirmPassword: string;
+  email: string;
+  location: string;
+}
 
 function Register() {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const initialValues: DataInterface = {
+    name: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+    location: "",
+  };
+
+  const handleSubmit = async (
+    values: DataInterface,
+    { resetForm, setFieldError }: FormikHelpers<DataInterface>
+  ) => {
+    setLoading(true);
+    const response = await axios.post(user_api, values);
+    if (response.data.message) {
+      console.log("test");
+      for (let [key, value] of Object.entries(initialValues)) {
+        setFieldError(key, " ");
+      }
+      setLoading(false);
+    }
+  };
+
   return (
-    <main className="main-login">
+    <main className="main-register">
       <div className="flex-1 grid grid-cols-2 bg-white gap-4 p-[10px]">
         <section className="text-[#fff] bg-[url('./assets/login.jpg')] bg-no-repeat bg-center bg-cover rounded-tl-[30px] rounded-br-[30px] flex justify-center content-center ">
           <div className="flex justify-center content-center flex-col">
@@ -20,58 +67,89 @@ function Register() {
             </p>
           </header>
 
-          <form action="" className="my-10 ">
-            <div className="form-control w-full">
-              <label htmlFor="" className="label">
-                <span className="label-text text-[black] font-[800]">Full name</span>
-              </label>
-              <input type="text" className="input input-bordered w-full input-primary" />
-            </div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={registerSchema}
+          >
+            <Form className="my-4">
+              <FormControlInput
+                fcstyle="w-full"
+                lblstyle="text-[black] font-[800]"
+                lblname="Full name"
+                name="name"
+                type="text"
+                placeholder="Full name"
+                className="input input-bordered w-full input-ghost text-black"
+              />
 
-            <div className="form-control w-full">
-              <label htmlFor="" className="label">
-                <span className="label-text text-[black] font-[800]">Email</span>
-              </label>
-              <input type="text" className="input input-bordered w-full input-primary" />
-            </div>
+              <FormControlInput
+                fcstyle="w-full"
+                lblstyle="text-[black] font-[800]"
+                lblname="Email "
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="input input-bordered w-full input-ghost text-black"
+              />
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="form-control w-full">
-                <label htmlFor="" className="label">
-                  <span className="label-text text-[black] font-[800]">Password</span>
-                </label>
-                <input type="text" className="input input-bordered w-full input-primary" />
+              <div className="grid grid-cols-2 gap-4">
+                <FormControlInput
+                  fcstyle="w-full"
+                  lblstyle="text-[black] font-[800]"
+                  lblname="Password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  className="input input-bordered w-full input-ghost text-black"
+                />
+
+                <FormControlInput
+                  fcstyle="w-full"
+                  lblstyle="text-[black] font-[800]"
+                  lblname="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="input input-bordered w-full input-ghost text-black"
+                />
               </div>
 
-              <div className="form-control w-full">
-                <label htmlFor="" className="label">
-                  <span className="label-text text-[black] font-[800]">Confirm Password</span>
-                </label>
-                <input type="text" className="input input-bordered w-full input-primary" />
+              <FormControlInput
+                fcstyle="w-full"
+                lblstyle="text-[black] font-[800]"
+                lblname="Location"
+                name="location"
+                type="text"
+                placeholder="Location"
+                className="input input-bordered w-full input-ghost text-black"
+              />
+
+              <div className="form-control w-full mt-4">
+                {loading ? (
+                  <ClipLoader color="#ea5422" className="m-auto" />
+                ) : (
+                  <button type="submit" className="btn btn-primary rounded-full">
+                    Create Account
+                  </button>
+                )}
               </div>
-            </div>
+            </Form>
+          </Formik>
 
-            <div className="form-control w-full">
-              <label htmlFor="" className="label">
-                <span className="label-text text-[black] font-[800]">Full name</span>
-              </label>
-              <select className="select select-bordered w-full select-primary">
-                <option value="">1</option>
-                <option value="">1</option>
-                <option value="">1</option>
-                <option value="">1</option>
-                <option value="">1</option>
-                <option value="">1</option>
-                <option value="">1s</option>
-              </select>
-            </div>
+          <div className="flex mt-4 justify-center content-center">
+            <hr className="w-full m-auto  " />
+            <p className="px-4 text-[grey]">or</p>
+            <hr className="w-full m-auto" />
+          </div>
 
-            <div className="form-control w-full mt-4">
-              <button type="submit" className="btn btn-primary rounded-full">
-                Create Account
-              </button>
+          <section className="flex justify-center mt-4">
+            <div className="">
+              <figure className="rounded-full bg-white flex justify-center p-1">
+                <FcGoogle size={30} className="" />
+              </figure>
             </div>
-          </form>
+          </section>
         </section>
       </div>
     </main>
