@@ -1,33 +1,41 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import landing from "../assets/landing-hero.png";
-
+import sample from "../assets/sample.jpg";
 function LandingLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const campground: boolean =
+    location.pathname === "/" ||
+    location.pathname === "/register" ||
+    location.pathname === "/login";
   const handleNavigate = () => {
     navigate("/");
   };
   return (
     <>
       <div className="h-screen flex flex-col p-[10px]">
-        <header className="h-[50px] flex justify-between">
+        <header
+          className={`h-[50px] flex justify-between ${
+            campground ? "" : " border-b-[1px] border-solid border-gray-200"
+          }`}
+        >
           <section className="flex hover:cursor-pointer" onClick={handleNavigate}>
-            <img src={logo} alt="YelpCamp Logo" className=" w-[60px] h-[60px]" />
-            <h1 className="text-[20px] py-[15px] font-[900]">YelpCamp</h1>
+            <img src={logo} alt="YelpCamp Logo" className=" w-[50px] h-[50px]" />
+            <h1 className="text-[18px] py-[12px] font-[900]">YelpCamp</h1>
           </section>
 
           {location.pathname === "/" ? (
             <>
-              <section className="py-[10px]">
-                <a href="#asda" className="m-[10px]">
+              <section className="py-[12px]">
+                <a href="#asda" className="m-[1rem]">
                   Home
                 </a>
-                <a href="#asda" className="m-[10px]">
+                <a href="#asda" className="m-[1rem]">
                   About
                 </a>
-                <a href="#asdasd" className="m-[10px]">
+                <a href="#asdasd" className="m-[1rem]">
                   Contact
                 </a>
               </section>
@@ -39,6 +47,20 @@ function LandingLayout() {
                 <Link to="/register" className="btn btn-ghost rounded-full ">
                   Register
                 </Link>
+              </section>
+            </>
+          ) : (
+            ""
+          )}
+
+          {location.pathname === "/campgrounds" ? (
+            <>
+              <section className="flex flex-col justify-center">
+                <section className="avatar">
+                  <div className=" w-[36px] rounded-full">
+                    <img src={sample} alt="" />
+                  </div>
+                </section>
               </section>
             </>
           ) : (
@@ -58,7 +80,10 @@ function LandingLayout() {
                 </p>
 
                 <div className="">
-                  <Link to="/campgrounds" className="btn btn-primary rounded-full p-[16px]">
+                  <Link
+                    to="/campgrounds"
+                    className="text-white text-[14px]  btn btn-primary rounded-full p-4"
+                  >
                     View Campgrounds
                   </Link>
                 </div>
@@ -75,49 +100,6 @@ function LandingLayout() {
       </div>
 
       {location.pathname === "/" && <Outlet />}
-
-      <footer className="grid grid-cols-5 p-[2rem]">
-        <section>
-          <section className="flex hover:cursor-pointer text-[20px] py-[15px] font-[900]">
-            <img src={logo} alt="YelpCamp Logo" className="w-[50px] h-[50px]" />
-            <h1 className="text-[20px] py-[10px]">YelpCamp</h1>
-          </section>
-          <p>Discover the Great Outdoors with YelpCamp!</p>
-        </section>
-
-        <section>
-          <h3 className="text-[20px]  font-[900]">Company</h3>
-          <ul>
-            <li className="py-[5px]">Features</li>
-            <li className="py-[5px]">News</li>
-            <li className="py-[5px]">FAQ</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="text-[20px]  font-[900]">Resources</h3>
-          <ul>
-            <li className="py-[5px]">Events</li>
-            <li className="py-[5px]">Promos</li>
-            <li className="py-[5px]">Demo</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="text-[20px]  font-[900]">Support</h3>
-          <ul>
-            <li className="py-[5px]">Account</li>
-            <li className="py-[5px]">Support Center</li>
-            <li className="py-[5px]">Feedback</li>
-            <li className="py-[5px]">Contact Us</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="text-[20px]  font-[900]">Social Media</h3>
-          <p>Yelpcamp@support.ts</p>
-        </section>
-      </footer>
     </>
   );
 }
