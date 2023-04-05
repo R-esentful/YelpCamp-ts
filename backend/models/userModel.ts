@@ -5,6 +5,7 @@ interface UserInterface {
   name: string;
   email: string;
   password: string;
+  location: string;
 }
 
 const userSchema = new Schema<UserInterface>(
@@ -20,6 +21,10 @@ const userSchema = new Schema<UserInterface>(
     password: {
       type: String,
       required: [true, "Please provide password"],
+    },
+    location: {
+      type: String,
+      required: [true, "Please provide your location"],
     },
   },
   {
