@@ -12,15 +12,17 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 // Layout
-import LandingLayout from "./layouts/LandingLayout";
+import YelpLayout from "./layouts/YelpLayout";
+import Campground from "./pages/Campground";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route element={<LandingLayout />}>
+      <Route element={<YelpLayout />}>
         <Route index path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/campgrounds" element={<Campground />} />
       </Route>
     </>
   )
