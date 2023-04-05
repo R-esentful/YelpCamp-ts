@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import { FcGoogle } from "react-icons/fc";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
@@ -10,7 +10,6 @@ import { registerSchema } from "../schema/registerSchema";
 
 // Components
 import FormControlInput from "../components/FormControlInput";
-import Input from "../components/CustomInput";
 
 // Variables
 import { user_api } from "../utils/variables";
@@ -59,11 +58,14 @@ function Register() {
             </p>
           </div>
         </section>
-        <section className=" ml-8 flex flex-col">
+        <section className="p-4 flex flex-col">
           <header>
-            <h1 className="text-2xl font-[900] mb-2">Sign Up</h1>
+            <h1 className="text-4xl font-[900] mb-2">Sign Up</h1>
             <p>
-              Have an account already? <Link to="/login">Login</Link>
+              Have an account already?{" "}
+              <Link to="/login" className="ml-2 text-primary">
+                Login
+              </Link>
             </p>
           </header>
 
@@ -72,7 +74,7 @@ function Register() {
             onSubmit={handleSubmit}
             validationSchema={registerSchema}
           >
-            <Form className="my-4">
+            <Form className="p-4">
               <FormControlInput
                 fcstyle="w-full"
                 lblstyle="text-[black] font-[800]"
@@ -130,7 +132,7 @@ function Register() {
                   <ClipLoader color="#ea5422" className="m-auto" />
                 ) : (
                   <button type="submit" className="btn btn-primary rounded-full">
-                    Create Account
+                    CREATE ACCOUNT
                   </button>
                 )}
               </div>
