@@ -10,9 +10,9 @@ import { User } from "../models/userModel";
  * @access PUBLIC
  */
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, location } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !location) {
     throw new Error("Please provide all required fields");
   }
 
@@ -22,7 +22,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   } else {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({ name, email, password: hashPassword });
+    const user = await User.create({ name, email, password: hashPassword, location });
     res.status(201).json(user);
   }
 });
