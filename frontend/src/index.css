@@ -77,3 +77,7 @@ body {
 .rating__input:hover ~ .rating__label .rating__icon--star {
   color: #ddd;
 }
+
+.example-thumb {
+  border: red solid 1px;
+}
