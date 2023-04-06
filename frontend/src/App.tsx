@@ -10,10 +10,11 @@ import {
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Campgrounds from "./pages/Campgrounds";
+import NewCampground from "./pages/NewCampground";
 
 // Layout
 import YelpLayout from "./layouts/YelpLayout";
-import Campground from "./pages/Campground";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,8 @@ const router = createBrowserRouter(
         <Route index path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/campgrounds" element={<Campground />} />
+        <Route path="/campgrounds" element={<Campgrounds />} />
+        <Route path="/campgrounds/new" element={<NewCampground />} />
       </Route>
     </>
   )
