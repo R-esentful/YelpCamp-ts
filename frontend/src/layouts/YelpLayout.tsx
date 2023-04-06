@@ -1,4 +1,6 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { GiCampingTent } from "react-icons/gi";
 import logo from "../assets/logo.png";
 import landing from "../assets/landing-hero.png";
 import sample from "../assets/sample.jpg";
@@ -18,7 +20,9 @@ function LandingLayout() {
       <div className="h-screen flex flex-col p-[10px]">
         <header
           className={`h-[50px] flex justify-between ${
-            campground ? "" : " border-b-[1px] border-solid border-gray-200"
+            campground
+              ? ""
+              : " border-b-[1px] border-solid border-gray-200 fixed top-0 left-0 w-full bg-white   "
           }`}
         >
           <section className="flex hover:cursor-pointer" onClick={handleNavigate}>
@@ -53,13 +57,25 @@ function LandingLayout() {
             ""
           )}
 
-          {location.pathname === "/campgrounds" ? (
+          {location.pathname === "/campgrounds" || location.pathname === "/campgrounds/new" ? (
             <>
-              <section className="flex flex-col justify-center">
-                <section className="avatar">
-                  <div className=" w-[36px] rounded-full">
-                    <img src={sample} alt="" />
-                  </div>
+              <section className="flex mr-4">
+                <section className="flex mr-4">
+                  <Link to="/campgrounds/new" className="flex text-[12px] my-auto mx-4">
+                    <GiCampingTent size={22} className="mr-2" />
+                    New Campground
+                  </Link>
+                  <Link to="/profile" className="flex text-[12px] my-auto mx-4">
+                    <FaUser size={16} className="mr-2" />
+                    Profile
+                  </Link>
+                </section>
+                <section className="flex flex-col justify-center">
+                  <section className="avatar">
+                    <div className=" w-[36px] rounded-full">
+                      <img src={sample} alt="" />
+                    </div>
+                  </section>
                 </section>
               </section>
             </>
