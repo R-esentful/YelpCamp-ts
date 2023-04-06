@@ -9,7 +9,7 @@ import { useState } from "react";
 import { registerSchema } from "../schema/registerSchema";
 
 // Components
-import FormControlInput from "../components/FormControlInput";
+import FormControlInput from "../components/Shared/FormControlInput";
 
 // Variables
 import { user_api } from "../utils/variables";
@@ -39,7 +39,6 @@ function Register() {
     setLoading(true);
     const response = await axios.post(user_api, values);
     if (response.data.message) {
-      console.log("test");
       for (let [key, value] of Object.entries(initialValues)) {
         setFieldError(key, " ");
       }

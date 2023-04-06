@@ -5,7 +5,7 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import { ClipLoader } from "react-spinners";
 
 // Component
-import FormControlInput from "../components/FormControlInput";
+import FormControlInput from "../components/Shared/FormControlInput";
 import { loginSchema } from "../schema/loginSchema";
 
 interface LoginInterface {
