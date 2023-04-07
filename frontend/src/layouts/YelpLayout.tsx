@@ -22,7 +22,7 @@ function LandingLayout() {
           className={`h-[50px] flex justify-between ${
             campground
               ? ""
-              : " border-b-[1px] border-solid border-gray-200 fixed top-0 left-0 w-full bg-white   "
+              : " border-b-[1px] border-solid border-gray-200 fixed top-0 left-0 w-full bg-white z-10   "
           }`}
         >
           <section className="flex hover:cursor-pointer" onClick={handleNavigate}>
