@@ -23,7 +23,7 @@ function Landing() {
             </div>
           </div>
 
-          <div className="text-[#fff] flex justify-center content-center">
+          <div className="text-[#fff] flex justify-center content-center" id="About">
             <figure className="flex mr-4">
               <Review width={80} height={80} className="m-auto" />
             </figure>
@@ -110,7 +110,7 @@ function Landing() {
         </section>
       </main>
 
-      <footer className="grid grid-cols-5 p-[2rem]">
+      <footer className="grid grid-cols-5 p-[2rem]" id="Contact">
         <section>
           <section className="flex hover:cursor-pointer text-[20px] py-[15px] font-[900]">
             <img src={logo} alt="YelpCamp Logo" className="w-[50px] h-[50px]" />

@@ -43,6 +43,8 @@ function Register() {
         setFieldError(key, " ");
       }
       setLoading(false);
+    } else {
+      setLoading(false);
     }
   };
 

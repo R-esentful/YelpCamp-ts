@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { ClipLoader } from "react-spinners";
+import { user_api } from "../utils/variables";
 
 // Component
 import FormControlInput from "../components/Shared/FormControlInput";
@@ -19,12 +21,30 @@ function Login() {
     email: "",
     password: "",
   };
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (
+    values: LoginInterface,
+    { setFieldError, resetForm }: FormikHelpers<LoginInterface>
+  ) => {
+    setLoading(true);
+    const response = await axios.post(`${user_api}/login`, values);
+    if (response.data?.message) {
+      for (let [key, value] of Object.entries(initialValues)) {
+        setFieldError(key, " ");
+      }
+      setLoading(false);
+    }
+    if (response.data?.user) {
+      setLoading(false);
+      resetForm();
+      navigate("/campgrounds");
+    }
+  };
   return (
     <main className="flex-1 flex justify-center content-center">
       <div className="flex-1 grid grid-cols-2 bg-white gap-4 p-[10px]">
-        <section className="p-4 flex flex-col">
+        <section className="p-4 flex flex-col ">
           <div className="py-8 px-32 flex-1">
             <header className="mb-4">
               <h1 className="text-4xl font-[900] mb-2">Welcome back!</h1>
@@ -37,37 +57,39 @@ function Login() {
                 onSubmit={handleSubmit}
                 validationSchema={loginSchema}
               >
-                <Form>
-                  <FormControlInput
-                    fcstyle="w-full mb-4"
-                    lblstyle="text-[black] font-[800]"
-                    lblname="Email"
-                    name="email"
-                    type="text"
-                    placeholder="Email address"
-                    className="input input-bordered w-full input-ghost"
-                  />
+                {(props) => (
+                  <Form>
+                    <FormControlInput
+                      fcstyle="w-full mb-4"
+                      lblstyle="text-[black] font-[800]"
+                      lblname="Email"
+                      name="email"
+                      type="text"
+                      placeholder="Email address"
+                      className="input input-bordered w-full input-ghost"
+                    />
 
-                  <FormControlInput
-                    fcstyle="w-full mb-8"
-                    lblstyle="text-[black] font-[800]"
-                    lblname="Password"
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    className="input input-bordered w-full input-ghost"
-                  />
+                    <FormControlInput
+                      fcstyle="w-full mb-8"
+                      lblstyle="text-[black] font-[800]"
+                      lblname="Password"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      className="input input-bordered w-full input-ghost"
+                    />
 
-                  <div className="form-control w-full">
-                    {loading ? (
-                      <ClipLoader color="#ea5422" className="m-auto" />
-                    ) : (
-                      <button type="submit" className="btn btn-primary rounded-full">
-                        LOGIN
-                      </button>
-                    )}
-                  </div>
-                </Form>
+                    <div className="form-control w-full">
+                      {loading ? (
+                        <ClipLoader color="#ea5422" className="m-auto" />
+                      ) : (
+                        <button type="submit" className="btn btn-primary rounded-full">
+                          LOGIN
+                        </button>
+                      )}
+                    </div>
+                  </Form>
+                )}
               </Formik>
             </section>
 
@@ -96,7 +118,7 @@ function Login() {
           </div>
         </section>
 
-        <section className="text-[#fff] bg-[url('./assets/login.jpg')] bg-no-repeat bg-center bg-cover rounded-tl-[30px] rounded-br-[30px] flex justify-center content-center ">
+        <section className="text-[#fff] bg-[url('./assets/login-2.jpg')] bg-no-repeat bg-center bg-cover rounded-tl-[30px] rounded-br-[30px] flex justify-center content-center ">
           <div className="flex justify-center content-center flex-col">
             <h1 className="text-[32px] text-center">Start your camping with us</h1>
             <p className="text-[12px] text-center">
