@@ -1,11 +1,42 @@
 import { GiCampfire, GiShower, GiElectric, GiHiking, GiBoatFishing } from "react-icons/gi";
-import { HiLocationMarker } from "react-icons/hi";
+import { HiLocationMarker, HiOutlineUpload } from "react-icons/hi";
 import { TbSwimming } from "react-icons/tb";
+import { useDropzone } from "react-dropzone";
+
+import { useState } from "react";
+import ImageItem from "../components/ImageItem";
+
+interface FileInterface extends File {
+  preview: string;
+}
 
 function NewCampground() {
+  const [files, setFiles] = useState<FileInterface[]>([]);
+
+  const removeFile = (name: string): void => {
+    setFiles(files.filter((file) => name !== file.preview));
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "image/png": [".png"],
+      "image/jpg": [".jpg"],
+      "image/jpeg": [".jpeg"],
+    },
+    maxFiles: 5,
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
   return (
-    <main className="grid grid-cols-2 mt-10">
-      <div className="px-16 py-8">
+    <main className="flex-1 grid grid-cols-2 mt-10">
+      <div className="px-16 py-4 my-10 mx-auto">
         <header className="mb-2">
           <h1 className="text-4xl font-[900] mb-1">Showcase Your Campsite!</h1>
           <p className="text-[grey]">
@@ -49,7 +80,7 @@ function NewCampground() {
                 id=""
                 cols={30}
                 rows={2}
-                className="textarea textarea-bordered textarea-primary w-full focus:outline-none"
+                className="textarea textarea-bordered textarea-primary w-full focus:outline-none resize-none"
               ></textarea>
             </div>
 
@@ -162,10 +193,32 @@ function NewCampground() {
           </form>
         </div>
       </div>
-      <div className="px-16 py-8">
+      <div className="w-full py-4  my-10 mx-auto ">
         <header>
-          <h1 className="text-2xl font-[900]">Upload Image</h1>
+          <h1 className="text-2xl font-[900] text-start">Upload Image</h1>
         </header>
+
+        <section className="w-full">
+          <div className="grid grid-cols-5 gap-2 mt-2">
+            {files.length > 0
+              ? files.map((file) => (
+                  <ImageItem key={file.name} source={file.preview} remove={removeFile} />
+                ))
+              : ""}
+          </div>
+
+          <div
+            className="p-4 border-gray-500 border-dashed border-2 mt-2 hover:cursor-pointer"
+            {...getRootProps()}
+          >
+            <div className="flex justify-center">
+              <HiOutlineUpload size={20} className="my-auto mr-2" />
+              <h1 className="italic">Select or Drag & Drop file to upload.</h1>
+              <input className="h-full" {...getInputProps()} />
+            </div>
+            <p className="text-[12px] text-center text-[grey]">Maximum of 5 Images.</p>
+          </div>
+        </section>
       </div>
     </main>
   );

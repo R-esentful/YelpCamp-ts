@@ -5,10 +5,13 @@ import CampgroundItem from "../components/CampgroundItem";
 import sample from "../assets/sample.jpg";
 import login from "../assets/login.jpg";
 import hero from "../assets/landing-hero.png";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Campgrounds() {
-  const location = useLocation();
-  console.log(location);
+  const navigate = useNavigate();
+
+  const clicked = () => {
+    return navigate("/campgrounds/1");
+  };
   return (
     <main className="flex-1 flex">
       <section className="grid grid-cols-5 flex-1">
@@ -242,27 +245,15 @@ function Campgrounds() {
           </section>
         </div>
         <div className="col-span-4 p-4 grid grid-cols-4 gap-4 mt-12 ">
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={hero} />
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={hero} />
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={hero} />
-          <CampgroundItem img={sample} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
-          <CampgroundItem img={login} />
+          <CampgroundItem img={sample} navigate={clicked} />
+          <CampgroundItem img={login} navigate={clicked} />
+          <CampgroundItem img={hero} navigate={clicked} />
+          <CampgroundItem img={sample} navigate={clicked} />
+          <CampgroundItem img={login} navigate={clicked} />
+          <CampgroundItem img={sample} navigate={clicked} />
+          <CampgroundItem img={login} navigate={clicked} />
+          <CampgroundItem img={hero} navigate={clicked} />
+          <CampgroundItem img={sample} navigate={clicked} />
         </div>
       </section>
     </main>
