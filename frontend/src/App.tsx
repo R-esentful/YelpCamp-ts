@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 // Pages
 import Landing from "./pages/Landing";
@@ -15,6 +16,7 @@ import NewCampground from "./pages/NewCampground";
 
 // Layout
 import YelpLayout from "./layouts/YelpLayout";
+import Campground from "./pages/Campground";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,7 @@ const router = createBrowserRouter(
         <Route path="/register" element={<Register />} />
         <Route path="/campgrounds" element={<Campgrounds />} />
         <Route path="/campgrounds/new" element={<NewCampground />} />
+        <Route path="/campgrounds/:id" element={<Campground />} />
       </Route>
     </>
   )
