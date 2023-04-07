@@ -17,6 +17,7 @@ import NewCampground from "./pages/NewCampground";
 // Layout
 import YelpLayout from "./layouts/YelpLayout";
 import Campground from "./pages/Campground";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route path="/campgrounds" element={<Campgrounds />} />
         <Route path="/campgrounds/new" element={<NewCampground />} />
         <Route path="/campgrounds/:id" element={<Campground />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </>
   )
