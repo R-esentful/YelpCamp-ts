@@ -8,9 +8,14 @@ import {
 } from "react-icons/gi";
 import { TbSwimming } from "react-icons/tb";
 
-function CampgroundItem({ img }: any) {
+interface CampgroundItemInterface {
+  img: string;
+  navigate: () => void;
+}
+
+function CampgroundItem({ img, navigate }: CampgroundItemInterface) {
   return (
-    <div className="hover:cursor-pointer">
+    <div className="hover:cursor-pointer" onClick={navigate}>
       <div className="w-full">
         <img src={img} alt="" className="rounded-xl w-full h-[260px]" />
       </div>
