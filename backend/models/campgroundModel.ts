@@ -8,6 +8,10 @@ interface Image {
 interface CampgroundInterface {
   name: string;
   user: object;
+  province: string;
+  cityOrmunicipalities: string;
+  description: string;
+  address: string;
   images: Image[];
   amenities: string[];
   activities: string[];
@@ -28,6 +32,22 @@ const campgroundSchema = new Schema<CampgroundInterface>({
     type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
+  },
+  province: {
+    type: String,
+    required: [true, "Please enter camp's province location"],
+  },
+  cityOrmunicipalities: {
+    type: String,
+    required: [true, "Please enter camp's city or municipalities location"],
+  },
+  address: {
+    type: String,
+    required: [true, "Please enter camp's address"],
+  },
+  description: {
+    type: String,
+    required: [true, "Please enter camp's description"],
   },
   images: [imageSchema],
   amenities: [{ type: String, enum: ["Campfire", "Shower", "Electric Hookups"] }],
