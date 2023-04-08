@@ -1,15 +1,34 @@
+import { useEffect } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { GiCampfire, GiShower, GiElectric, GiHiking, GiBoatFishing } from "react-icons/gi";
 import { TbSwimming } from "react-icons/tb";
 import CampgroundItem from "../components/CampgroundItem";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import sample from "../assets/sample.jpg";
 import login from "../assets/login.jpg";
 import hero from "../assets/landing-hero.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
+import Philippines from "../data/Philippines.json";
 function Campgrounds() {
   const [view, setView] = useState<Boolean>(false);
+  const [locationFilter, setLocationFilter] = useState(Philippines);
   const navigate = useNavigate();
+
+  const provinceName = locationFilter.map(({ province }) => province);
+  const provinceCity = locationFilter.find(
+    (province) => province.province === "Cebu"
+  )?.CityOrMunicipalities;
+
+  const initialValues = {
+    Province: "",
+    CityOrMunicipalities: "",
+    min: 1,
+    max: 1,
+    Amenities: [],
+    Activities: [],
+  };
 
   const clicked = () => {
     return navigate("/campgrounds/1");
@@ -25,38 +44,36 @@ function Campgrounds() {
               <div className="mb-4 w-[210px]">
                 <h1 className="font-[800] text-sm mb-2">Location</h1>
                 <div className="form-control w-full">
-                  <select
+                  <input
+                    type="text"
                     name=""
                     id=""
-                    className="select select-sm select-primary rounded-none mb-2"
-                  >
-                    <option value="">a</option>
-                    <option value="">b</option>
-                    <option value="">c</option>
-                    <option value="">ca</option>
-                    <option value="">cb</option>
-                    <option value="">cc</option>
-                  </select>
-                  <select
+                    list="provinces"
+                    placeholder="Province"
+                    className="input input-sm input-primary mb-2"
+                  />
+                  <datalist id="provinces">
+                    {provinceName.map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))}
+                  </datalist>
+                  <input
+                    type="text"
                     name=""
                     id=""
-                    className="select select-sm select-primary rounded-none mb-2"
-                  >
-                    <option value="">a</option>
-                    <option value="">b</option>
-                    <option value="">c</option>
-                    <option value="">ca</option>
-                    <option value="">cb</option>
-                    <option value="">cc</option>
-                  </select>
-                  <select name="" id="" className="select select-sm select-primary rounded-none">
-                    <option value="">a</option>
-                    <option value="">b</option>
-                    <option value="">c</option>
-                    <option value="">ca</option>
-                    <option value="">cb</option>
-                    <option value="">cc</option>
-                  </select>
+                    list="CityOrMunicipalities"
+                    placeholder="City or Municipality"
+                    className="input input-sm input-primary"
+                  />
+                  <datalist id="CityOrMunicipalities">
+                    {provinceCity?.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </datalist>
                 </div>
               </div>
 
