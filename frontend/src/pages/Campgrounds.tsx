@@ -6,7 +6,9 @@ import sample from "../assets/sample.jpg";
 import login from "../assets/login.jpg";
 import hero from "../assets/landing-hero.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 function Campgrounds() {
+  const [view, setView] = useState<Boolean>(false);
   const navigate = useNavigate();
 
   const clicked = () => {
@@ -17,25 +19,54 @@ function Campgrounds() {
       <section className="grid grid-cols-5 flex-1">
         <div className="p-4 flex  bg-white  ">
           <section className="flex-1 border-r-[1px] border-solid border-gray-200 fixed top-20">
-            <div className="p-5">
+            <div className="px-5">
               <h1 className="font-[800] text-sm mb-4">Filter</h1>
 
-              <div className="mb-4">
+              <div className="mb-4 w-[210px]">
                 <h1 className="font-[800] text-sm mb-2">Location</h1>
                 <div className="form-control w-full">
+                  <select
+                    name=""
+                    id=""
+                    className="select select-sm select-primary rounded-none mb-2"
+                  >
+                    <option value="">a</option>
+                    <option value="">b</option>
+                    <option value="">c</option>
+                    <option value="">ca</option>
+                    <option value="">cb</option>
+                    <option value="">cc</option>
+                  </select>
+                  <select
+                    name=""
+                    id=""
+                    className="select select-sm select-primary rounded-none mb-2"
+                  >
+                    <option value="">a</option>
+                    <option value="">b</option>
+                    <option value="">c</option>
+                    <option value="">ca</option>
+                    <option value="">cb</option>
+                    <option value="">cc</option>
+                  </select>
                   <select name="" id="" className="select select-sm select-primary rounded-none">
-                    <option value="">kk</option>
+                    <option value="">a</option>
+                    <option value="">b</option>
+                    <option value="">c</option>
+                    <option value="">ca</option>
+                    <option value="">cb</option>
+                    <option value="">cc</option>
                   </select>
                 </div>
               </div>
 
               <div className="flex justify-between">
                 <h1 className="font-[800] text-sm">Price range</h1>
-                <button>
+                <button onClick={() => setView((prev) => !prev)}>
                   <IoMdArrowDropdown />
                 </button>
               </div>
-              <div className="w-full p-1">
+              <div className={`w-full p-1 ${view ? "block" : "hidden"}`}>
                 <div className="form-control mb-2">
                   <label className="">
                     <span className="label-text text-[12px] text-black">Min</span>
@@ -65,12 +96,12 @@ function Campgrounds() {
               <div className="mb-">
                 <div className="flex justify-between">
                   <h1 className="font-[800] text-sm">Amenities</h1>
-                  <button>
+                  <button onClick={() => setView((prev) => !prev)}>
                     <IoMdArrowDropdown />
                   </button>
                 </div>
 
-                <div className="w-full p-1">
+                <div className={`w-full p-1 ${view ? "block" : "hidden"}`}>
                   <div className="form-control mb-1">
                     <label htmlFor="" className="flex">
                       <input
@@ -117,15 +148,15 @@ function Campgrounds() {
                 </div>
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex justify-between">
                   <h1 className="font-[800] text-sm">Activities</h1>
-                  <button>
+                  <button onClick={() => setView((prev) => !prev)}>
                     <IoMdArrowDropdown />
                   </button>
                 </div>
 
-                <div className="w-full p-1">
+                <div className={`w-full p-1 ${view ? "block" : "hidden"}`}>
                   <div className="form-control mb-1">
                     <label htmlFor="" className="flex">
                       <input
