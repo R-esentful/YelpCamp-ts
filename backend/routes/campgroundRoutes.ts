@@ -2,6 +2,11 @@ import { Router } from "express";
 export const campgroundRoute = Router();
 
 // Controller
-import { newCampground } from "../controllers/campgroundController";
+import {
+  getCampgrounds,
+  newCampground,
+  uploadCampgroundImage,
+} from "../controllers/campgroundController";
 
-campgroundRoute.route("/").get().post(newCampground);
+campgroundRoute.route("/").get(getCampgrounds).post(newCampground);
+campgroundRoute.post("/upload-image", uploadCampgroundImage);
