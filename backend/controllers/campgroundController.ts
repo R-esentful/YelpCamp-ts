@@ -1,8 +1,26 @@
 import { general_error_message } from "./../utilities/variables";
-import axios from "axios";
 import asyncHandler from "express-async-handler";
 import { Campground } from "../models/campgroundModel";
+import { checkFolder } from "../utilities/aws";
+import { uploadImage } from "../utilities/aws";
+/**
+ * @description Gets all of the campground
+ * @method GET
+ * @route api/v1/campgrounds
+ * @access private
+ */
+export const getCampgrounds = asyncHandler(async (req, res) => {
+  const campgrounds = await Campground.find();
+  console.log(campgrounds);
+  res.status(200).json(campgrounds);
+});
 
+/**
+ * @description Creates campground
+ * @method POST
+ * @route api/v1/campgrounds
+ * @access private
+ */
 export const newCampground = asyncHandler(async (req, res) => {
   const { CampName, Province, CityOrMunicipalities, Address, Description, Amenities, Activities } =
     req.body;
@@ -35,8 +53,23 @@ export const newCampground = asyncHandler(async (req, res) => {
       activities: Activities,
     });
     campground.save();
+
+    checkFolder(campground._id.toString());
+
     res.status(200).json({
       campground,
     });
   }
+});
+
+export const uploadCampgroundImage = asyncHandler(async (req, res) => {
+  const { id, imageNo, type } = req.body;
+
+  if (!id || !imageNo || !type) {
+    throw new Error(general_error_message);
+  }
+  const location = `campgrounds/${id}/`;
+  const upload = uploadImage(id, imageNo, location, type);
+
+  res.status(200).json({ msg: "hi" });
 });
