@@ -1,8 +1,8 @@
 import { general_error_message } from "./../utilities/variables";
 import asyncHandler from "express-async-handler";
 import { Campground } from "../models/campgroundModel";
-import { checkFolder } from "../utilities/aws";
-import { uploadImage } from "../utilities/aws";
+import { checkFolder, uploadImage } from "../utilities/aws";
+
 /**
  * @description Gets all of the campground
  * @method GET
@@ -54,7 +54,7 @@ export const newCampground = asyncHandler(async (req, res) => {
     });
     campground.save();
 
-    checkFolder(campground._id.toString());
+    await checkFolder(campground._id.toString(), "campgrounds");
 
     res.status(200).json({
       campground,
@@ -68,8 +68,10 @@ export const uploadCampgroundImage = asyncHandler(async (req, res) => {
   if (!id || !imageNo || !type) {
     throw new Error(general_error_message);
   }
-  const location = `campgrounds/${id}/`;
-  const upload = uploadImage(id, imageNo, location, type);
+  const { signedURL, key, imageType } = await uploadImage(id, imageNo, "campgrounds", type);
+  const campground = await Campground.findById(id);
 
-  res.status(200).json({ msg: "hi" });
+  campground?.images.push({ url: key, filename: `${imageNo}.${imageType}` });
+  await campground?.save();
+  res.status(200).json({ url: signedURL });
 });
