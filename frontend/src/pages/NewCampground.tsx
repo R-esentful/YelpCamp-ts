@@ -67,11 +67,24 @@ function NewCampground() {
   };
 
   const handleSubmit = async (values: NewCampInterface) => {
-    const create = await axios.post(`${campground_api}`, values);
-    const uploadimg = await axios.post(`${campground_api}/presignedurl`, {
-      id: create.data.campground._id,
-    });
-    console.log(uploadimg);
+    if (files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const formData = new FormData();
+        const create = await axios.post(`${campground_api}`, values);
+        const upload = await axios.post(`${campground_api}/upload-image`, {
+          id: create.data.campground._id,
+          imageNo: i + 1,
+          type: files[i].type,
+        });
+        console.log(upload);
+        formData.append("file", files[i]);
+        await axios.put(upload.data.url, formData, {
+          headers: { "Content-Type": `${files[i].type}` },
+        });
+      }
+    } else {
+      const create = await axios.post(`${campground_api}`, values);
+    }
   };
   console.log(files);
   return (
