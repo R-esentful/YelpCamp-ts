@@ -1,16 +1,17 @@
+import axios from "axios";
 import { Formik, Field, Form } from "formik";
 import { GiCampfire, GiShower, GiElectric, GiHiking, GiBoatFishing } from "react-icons/gi";
 import { HiLocationMarker, HiOutlineUpload } from "react-icons/hi";
 import { TbSwimming } from "react-icons/tb";
 import { useDropzone } from "react-dropzone";
-
 import { ChangeEvent, useState } from "react";
-import ImageItem from "../components/ImageItem";
 
-import Philippines from "../data/Philippines.json";
-import axios from "axios";
+// Utils
 import { campground_api } from "../utils/variables";
-import { upload } from "@testing-library/user-event/dist/upload";
+// Components
+import ImageItem from "../components/ImageItem";
+// Data
+import Philippines from "../data/Philippines.json";
 
 interface FileInterface extends File {
   preview: string;
@@ -76,11 +77,12 @@ function NewCampground() {
           imageNo: i + 1,
           type: files[i].type,
         });
-        console.log(upload);
         formData.append("file", files[i]);
-        await axios.put(upload.data.url, formData, {
-          headers: { "Content-Type": `${files[i].type}` },
-        });
+        console.log(files[i]);
+        console.log(upload);
+        // await axios.put(upload.data.url, formData, {
+        //   headers: { "Content-Type": `multipart/form-data` },
+        // });
       }
     } else {
       const create = await axios.post(`${campground_api}`, values);

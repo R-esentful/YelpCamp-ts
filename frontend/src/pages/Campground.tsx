@@ -1,11 +1,11 @@
 import sample from "../assets/sample.jpg";
 import login from "../assets/login.jpg";
-import { GiCampfire, GiShower, GiElectric, GiHiking, GiBoatFishing } from "react-icons/gi";
-import { TbSwimming } from "react-icons/tb";
 import mapboxgl from "mapbox-gl";
 import { useRef, useState, useEffect } from "react";
-const mapboxapi = process.env.REACT_APP_MAPBOX as string;
+import { GiCampfire, GiShower, GiElectric, GiHiking, GiBoatFishing } from "react-icons/gi";
+import { TbSwimming } from "react-icons/tb";
 
+const mapboxapi = process.env.REACT_APP_MAPBOX as string;
 mapboxgl.accessToken = mapboxapi.replace(/"/g, "").replace(/;/g, "");
 function Campground() {
   const mapContainer = useRef<any>(null);
