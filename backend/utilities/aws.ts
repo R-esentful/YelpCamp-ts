@@ -28,9 +28,10 @@ export const uploadImage = async (id: string, imageNo: string, location: string,
   const key = `${location}/${id}/${imageNo}.${imageType}`;
   const command = new PutObjectCommand({
     Bucket: bucket,
-    Key: key,
-    ContentType: type,
+    Key: `${key}`,
+    ContentType: `${type}`,
   });
   const signedURL = await getSignedUrl(s3, command, { expiresIn: 3600 });
+  console.log(signedURL);
   return { signedURL, key, imageType };
 };
